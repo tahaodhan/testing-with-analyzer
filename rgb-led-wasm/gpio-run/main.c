@@ -13,16 +13,23 @@ void print_debug(const char *message);
 
 
 #define LED_GPIO 8 
+#define MARKER_GPIO 9
+
 
 void main() {
-    while (1) {
+    int counter = 0;
+
+    print_debug("loop starting");
+    gpio_set_level(MARKER_GPIO, 1);
+
+    while (counter < 1000000) {
         print_debug("Turning LED ON");
         gpio_set_level(LED_GPIO, 1);  
-        sleep_ms(1000);               
 
 
         print_debug("Turning LED OFF");
         gpio_set_level(LED_GPIO, 0);  
-        sleep_ms(1000);               
     }
+    print_debug("loop done");
+    gpio_set_level(MARKER_GPIO, 0);
 }

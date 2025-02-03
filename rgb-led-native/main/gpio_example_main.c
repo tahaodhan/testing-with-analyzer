@@ -5,6 +5,7 @@
 #include "driver/gpio.h"
 
 #define LED_GPIO 8
+#define MARKER_GPIO 9
 
 void app_main(void) {
     gpio_config_t io_conf = {};
@@ -15,13 +16,21 @@ void app_main(void) {
     io_conf.pull_up_en = 0;
     gpio_config(&io_conf);
 
-    while (1) {
+    int counter = 0;
+
+    printf("loop starting");
+    gpio_set_level(MARKER_GPIO, 1);
+
+    while (counter < 1000000) {
         printf("Turning LED ON\n");
         gpio_set_level(LED_GPIO, 1);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        
 
         printf("Turning LED OFF\n");
         gpio_set_level(LED_GPIO, 0);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        
+        counter++;
     }
+    printf("loop done");
+    gpio_set_level(MARKER_GPIO, 0);
 }
