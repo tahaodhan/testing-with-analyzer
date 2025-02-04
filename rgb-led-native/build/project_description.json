@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "generic_gpio",
-    "project_version":    "770b3fa",
+    "project_version":    "95ff131-dirty",
     "project_path":       "/home/todhan/esp32/testing-functions/testing-with-analyzer/rgb-led-native",
     "idf_path":           "/home/todhan/esp/v5.4/esp-idf",
     "build_dir":          "/home/todhan/esp32/testing-functions/testing-with-analyzer/rgb-led-native/build",

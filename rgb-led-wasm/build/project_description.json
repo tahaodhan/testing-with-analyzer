@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "wamr-simple",
-    "project_version":    "96531d8-dirty",
+    "project_version":    "95ff131-dirty",
     "project_path":       "/home/todhan/esp32/testing-functions/testing-with-analyzer/rgb-led-wasm",
     "idf_path":           "/home/todhan/esp/v5.4/esp-idf",
     "build_dir":          "/home/todhan/esp32/testing-functions/testing-with-analyzer/rgb-led-wasm/build",
