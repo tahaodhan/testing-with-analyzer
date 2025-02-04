@@ -9,6 +9,7 @@
 
 #define LOG_TAG "wamr"
 #define LED_GPIO 8  
+#define  MARKER_GPIO 9
 
 static void wasm_gpio_set_level(wasm_exec_env_t exec_env, int32_t pin, int32_t level) {
     gpio_set_level((gpio_num_t)pin, level);
@@ -52,14 +53,17 @@ void *iwasm_main(void *arg) {
         return NULL;
     }
 
+
+
     gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << LED_GPIO),
+        .pin_bit_mask = (1ULL << LED_GPIO) | (1ULL << MARKER_GPIO),
         .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE
     };
     gpio_config(&io_conf);
+
 
     ESP_LOGI(LOG_TAG, "Registering native functions");
     NativeSymbol native_symbols[] = {
@@ -95,7 +99,7 @@ fail2interp:
 fail1interp:
     ESP_LOGI(LOG_TAG, "Destroy WASM runtime");
     wasm_runtime_destroy();
-
+gpio_set_level(MARKER_GPIO, 0);
     return NULL;
 }
 
